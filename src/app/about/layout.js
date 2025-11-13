@@ -24,7 +24,7 @@ export const metadata = {
     siteName: "Faiz Hussain Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/image.png",
         width: 1200,
         height: 630,
         alt: "About Faiz Hussain - Web Developer Portfolio Preview",
@@ -39,7 +39,7 @@ export const metadata = {
     title: "About | Faiz Hussain — Web Developer from India",
     description:
       "Discover who Faiz Hussain is — a Full Stack Web Developer from Madhya Pradesh specializing in Next.js, React, and Node.js.",
-    images: ["/og-image.png"],
+    images: ["/image.png"],
     creator: "@faizhussain", // optional handle
   },
 };

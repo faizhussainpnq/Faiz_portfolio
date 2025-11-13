@@ -29,7 +29,7 @@ export const metadata = {
     siteName: "Faiz Hussain Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/image5.png",
         width: 1200,
         height: 630,
         alt: "Contact Faiz Hussain - Full Stack Web Developer",
@@ -44,7 +44,7 @@ export const metadata = {
     title: "Contact | Faiz Hussain — Full Stack Web Developer",
     description:
       "Connect with Faiz Hussain for professional web development and design services using Next.js, React, Node.js, and MongoDB.",
-    images: ["/og-image.png"],
+    images: ["/image5.png"],
     creator: "@faizhussain", // optional
   },
 };

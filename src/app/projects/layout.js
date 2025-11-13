@@ -34,7 +34,7 @@ export const metadata = {
     siteName: "Faiz Hussain Portfolio",
     images: [
       {
-        url: "/og-image.png", // Ensure this file exists in /public
+        url: "/image4.png", // Ensure this file exists in /public
         width: 1200,
         height: 630,
         alt: "Faiz Hussain Projects Showcase",
@@ -49,7 +49,7 @@ export const metadata = {
     title: "Projects | Faiz Hussain — Full Stack Web Developer",
     description:
       "Discover professional web development projects built by Faiz Hussain using Next.js, React, Node.js, and MongoDB. Clean, fast, and creative web apps.",
-    images: ["/og-image.png"],
+    images: ["/image4.png"],
     creator: "@faizhussain",
   },
 

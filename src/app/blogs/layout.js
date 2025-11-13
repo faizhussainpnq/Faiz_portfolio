@@ -30,7 +30,7 @@ export const metadata = {
     siteName: "Faiz Hussain Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/image3.png",
         width: 1200,
         height: 630,
         alt: "Faiz Hussain Blogs - Web Developer Portfolio Preview",
@@ -45,7 +45,7 @@ export const metadata = {
     title: "Blogs | Faiz Hussain — Next.js & React Developer Insights",
     description:
       "Learn from Faiz Hussain’s technical blogs on web development — covering Next.js, React, Node.js, MongoDB, and Tailwind CSS.",
-    images: ["/og-image.png"],
+    images: ["/image3.png"],
     creator: "@faizhussain", // optional
   },
 };
