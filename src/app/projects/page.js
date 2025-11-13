@@ -2,7 +2,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Icons: ExternalLink, Code2, Sparkles from 'lucide-react'
 import { ExternalLink, Code2, Sparkles } from "lucide-react"; 
 
 export default function ProjectsPage() {
@@ -139,7 +138,6 @@ export default function ProjectsPage() {
     ? projects 
     : projects.filter(p => p.category === activeFilter);
 
-  // --- Framer Motion Variants ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -159,34 +157,22 @@ export default function ProjectsPage() {
 
   return (
     <div className="w-full overflow-hidden bg-black">
-      {/* 🚀 Hero Section */}
+      {/* 🚀 Hero Section - Reduced animations */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className="relative w-full min-h-[60vh] overflow-hidden"
       >
-        {/* Animated Background */}
-        <motion.div
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 50%, rgba(4, 116, 94, 0.3) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 50%, rgba(4, 116, 94, 0.3) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, rgba(4, 116, 94, 0.3) 0%, transparent 50%)",
-            ],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0"
-        />
-        
+        {/* Simplified Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#04745e]/20 via-[#000f0c] to-[#000f0c]"></div>
 
-        {/* Floating Particles (Needs window check for Next.js SSR) */}
+        {/* Reduced Floating Particles - 15 to 5 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {mounted && [...Array(15)].map((_, i) => (
+          {mounted && [...Array(5)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-400/30 rounded-full"
+              className="absolute w-1 h-1 bg-yellow-400/20 rounded-full"
               initial={{
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
@@ -196,9 +182,9 @@ export default function ProjectsPage() {
                 opacity: [0, 1, 0],
               }}
               transition={{
-                duration: Math.random() * 3 + 3,
+                duration: 6,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: Math.random() * 3,
                 ease: "linear",
               }}
             />
@@ -235,7 +221,7 @@ export default function ProjectsPage() {
         </div>
       </motion.div>
       
-      {/* ⚙️ Filter Section */}
+      {/* ⚙️ Filter Section - Reduced hover effects */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -251,11 +237,11 @@ export default function ProjectsPage() {
             <motion.button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               className={`flex items-center gap-3 px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
                 activeFilter === filter.id
-                  ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black shadow-lg shadow-yellow-500/30'
+                  ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black shadow-lg'
                   : 'bg-gradient-to-r from-[#04745e]/20 to-transparent text-gray-300 border border-yellow-400/30 hover:border-yellow-400/50'
               }`}
             >
@@ -271,10 +257,10 @@ export default function ProjectsPage() {
         </div>
       </motion.div>
 
-      {/* 🖼️ Projects Grid with Filtering Animation */}
+      {/* 🖼️ Projects Grid - Reduced animations */}
       <div className="px-6 sm:px-10 md:px-16 lg:px-24 py-12 bg-gradient-to-b from-black via-[#000f0c] to-black">
         <motion.div 
-          layout // Enables automatic layout transitions (for filtering)
+          layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="wait">
@@ -282,45 +268,35 @@ export default function ProjectsPage() {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4 }} // Smoother transition
-                whileHover={{ y: -10, scale: 1.03 }} // More prominent hover effect
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ y: -5 }}
                 className="group relative"
               >
-                {/* Card */}
                 <div className="relative h-full bg-gradient-to-br from-[#04745e]/10 to-transparent backdrop-blur-xl border border-yellow-400/30 rounded-3xl overflow-hidden hover:border-yellow-400/50 transition-all duration-500">
                   
-                  {/* Top Gradient Bar */}
                   <div className={`h-2 bg-gradient-to-r ${project.gradient}`}></div>
 
                   <div className="p-6">
-                    {/* Icon & Type */}
                     <div className="flex items-center justify-between mb-4">
-                      <motion.div
-                        className="text-4xl"
-                        animate={{ rotate: [0, 10, -10, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      >
+                      <div className="text-4xl">
                         {project.icon}
-                      </motion.div>
+                      </div>
                       <div className="px-3 py-1 bg-gradient-to-r from-yellow-400/20 to-transparent rounded-lg border border-yellow-400/30">
                         <span className="text-xs font-semibold text-yellow-300">{project.type}</span>
                       </div>
                     </div>
 
-                    {/* Title */}
                     <h3 className="text-2xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-white group-hover:from-yellow-400 group-hover:to-yellow-200 transition-all duration-300">
                       {project.title}
                     </h3>
 
-                    {/* Description */}
                     <p className="text-gray-400 mb-4 leading-relaxed text-sm">
                       {project.description}
                     </p>
 
-                    {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.map((tech, i) => (
                         <span
@@ -332,11 +308,9 @@ export default function ProjectsPage() {
                       ))}
                     </div>
 
-                    {/* Features */}
                     <div className="mb-6">
                       <h4 className="text-sm font-semibold text-yellow-300 mb-2">Key Features:</h4>
                       <ul className="space-y-1">
-                        {/* Show only first 3 features */}
                         {project.features.slice(0, 3).map((feature, i) => (
                           <li key={i} className="text-xs text-gray-400 flex items-start gap-2">
                             <span className="text-yellow-400 mt-0.5">•</span>
@@ -346,13 +320,12 @@ export default function ProjectsPage() {
                       </ul>
                     </div>
 
-                    {/* Link Button */}
                     <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold bg-gradient-to-r ${project.gradient} text-white shadow-lg hover:shadow-xl transition-all duration-300 group/btn`}
                     >
                       <span>View Live Project</span>
@@ -360,7 +333,6 @@ export default function ProjectsPage() {
                     </motion.a>
                   </div>
 
-                  {/* Decorative Corner (Removed unnecessary complex glow animation for performance/simplicity) */}
                   <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-yellow-400/5 to-transparent rounded-tr-full" />
                 </div>
               </motion.div>
@@ -369,7 +341,7 @@ export default function ProjectsPage() {
         </motion.div>
       </div>
 
-      {/* 📈 Stats Section (Kept as is) */}
+      {/* 📈 Stats Section - Removed icon rotation */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -387,16 +359,12 @@ export default function ProjectsPage() {
             <motion.div
               key={i}
               variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ scale: 1.03 }}
               className="p-6 bg-gradient-to-br from-[#04745e]/10 to-transparent border border-yellow-400/30 rounded-2xl text-center group"
             >
-              <motion.div
-                className="text-3xl mb-2"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: i * 0.2 }}
-              >
+              <div className="text-3xl mb-2">
                 {stat.icon}
-              </motion.div>
+              </div>
               <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-2">
                 {stat.number}
               </h3>
@@ -406,7 +374,7 @@ export default function ProjectsPage() {
         </div>
       </motion.div>
 
-      {/* 📞 CTA Section (Kept as is) */}
+      {/* 📞 CTA Section - Reduced glow animations */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -414,18 +382,6 @@ export default function ProjectsPage() {
         className="px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-t from-[#04745e]/10 to-black"
       >
         <div className="relative max-w-4xl mx-auto">
-          {/* Glowing Orbs */}
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute -top-20 -left-20 w-64 h-64 bg-yellow-400/20 rounded-full blur-[100px]"
-          />
-          <motion.div
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 5, repeat: Infinity }}
-            className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#04745e]/20 rounded-full blur-[100px]"
-          />
-
           <div className="relative text-center p-12 bg-gradient-to-br from-[#04745e]/10 to-transparent backdrop-blur-xl border border-yellow-400/30 rounded-3xl">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -454,23 +410,22 @@ export default function ProjectsPage() {
               className="flex flex-wrap gap-4 justify-center"
             >
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(251, 191, 36, 0.5)" }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-full shadow-lg text-lg"
               >
                 Get In Touch
               </motion.button>
-             <motion.a
-  href="/PDF/Faiz_Hussain_CV.pdf"  // ✅ file public/PDF folder me honi chahiye
-  target="_blank"                  // ✅ naya tab me open karega
-  rel="noopener noreferrer"
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
-  className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 font-bold rounded-full hover:bg-yellow-400/10 transition-all text-lg flex items-center justify-center gap-2"
->
-  View Resume
-</motion.a>
-
+              <motion.a
+                href="/PDF/Faiz_Hussain_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 font-bold rounded-full hover:bg-yellow-400/10 transition-all text-lg flex items-center justify-center gap-2"
+              >
+                View Resume
+              </motion.a>
             </motion.div>
           </div>
         </div>

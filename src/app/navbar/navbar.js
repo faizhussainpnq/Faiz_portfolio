@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 🔹 Premium Navbar with Glassmorphism & Animations */}
+      {/* 🔹 Premium Navbar */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -40,32 +40,18 @@ export default function Navbar() {
       >
         <div className="max-w-[1400px] mx-auto flex items-center justify-between h-[75px] sm:h-[85px] px-4 sm:px-6 md:px-12">
           
-          {/* 🎨 Logo with Rotating Icon */}
+          {/* 🎨 Logo */}
           <Link href="/">
             <motion.div
-              whileHover={{ scale: 1.08 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 sm:gap-3 cursor-pointer group"
             >
-              <motion.div
-                animate={{ 
-                  rotate: [0, 360],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  rotate: { duration: 4, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                }}
-                className="relative"
-              >
+              <div className="relative">
                 <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-[#00ffaa]" />
-                {/* Glow Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-[#00ffaa] rounded-full blur-lg opacity-40"
-                  animate={{ scale: [1, 1.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.div>
+                {/* Subtle Glow */}
+                <div className="absolute inset-0 bg-[#00ffaa] rounded-full blur-lg opacity-30" />
+              </div>
               
               <h1 className="text-[18px] sm:text-[22px] md:text-[28px] font-bold font-serif">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#00ffaa] to-white">
@@ -78,7 +64,7 @@ export default function Navbar() {
             </motion.div>
           </Link>
 
-          {/* 🖥️ Desktop Menu with Advanced Hover Effects */}
+          {/* 🖥️ Desktop Menu */}
           <ul className="hidden md:flex items-center gap-1 lg:gap-2">
             {NavItems.map((item, index) => {
               const Icon = item.icon;
@@ -87,12 +73,12 @@ export default function Navbar() {
                   key={item.name}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  transition={{ delay: index * 0.08, duration: 0.4 }}
                   className="relative group"
                 >
                   <Link href={item.url}>
                     <motion.div
-                      whileHover={{ y: -3 }}
+                      whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       className="relative flex items-center gap-2 px-3 lg:px-4 py-2.5 text-[14px] lg:text-[16px] font-semibold text-gray-300 hover:text-[#00ffaa] transition-all duration-300 cursor-pointer"
                     >
@@ -106,12 +92,6 @@ export default function Navbar() {
                         whileHover={{ width: "100%" }}
                         transition={{ duration: 0.3 }}
                       />
-                      
-                      {/* Hover Glow */}
-                      <motion.div
-                        className="absolute inset-0 bg-[#00ffaa]/0 group-hover:bg-[#00ffaa]/5 rounded-lg blur-sm transition-all duration-300"
-                        whileHover={{ scale: 1.1 }}
-                      />
                     </motion.div>
                   </Link>
                 </motion.li>
@@ -123,24 +103,17 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.5 }}
             className="hidden md:block"
           >
             <motion.button
               whileHover={{ 
-                scale: 1.08,
-                boxShadow: "0 0 30px rgba(0, 255, 170, 0.5)"
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(0, 255, 170, 0.4)"
               }}
               whileTap={{ scale: 0.95 }}
               className="relative px-5 lg:px-7 py-2.5 bg-gradient-to-r from-[#00ffaa] to-[#04745e] text-black font-bold rounded-full shadow-lg text-sm lg:text-base overflow-hidden group"
             >
-              {/* Animated Background */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#04745e] to-[#00ffaa]"
-                initial={{ x: "100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
               <span className="relative z-10 flex items-center gap-2">
                 <Rocket className="w-4 h-4" />
                 Hire Me
@@ -148,41 +121,17 @@ export default function Navbar() {
             </motion.button>
           </motion.div>
 
-          {/* 📱 Mobile Menu Button with Pulse Effect */}
+          {/* 📱 Mobile Menu Button */}
           <motion.button
-            whileTap={{ scale: 0.85 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setOpen(true)}
             className="md:hidden relative"
           >
-            <motion.div
-              animate={{ 
-                boxShadow: [
-                  "0 0 0 0 rgba(0, 255, 170, 0.4)",
-                  "0 0 0 10px rgba(0, 255, 170, 0)",
-                ]
-              }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute inset-0 rounded-lg"
-            />
             <div className="relative z-10 p-2 bg-gradient-to-br from-[#00ffaa]/20 to-transparent rounded-lg border border-[#00ffaa]/30">
               <Menu size={26} className="text-[#00ffaa]" />
             </div>
           </motion.button>
         </div>
-
-        {/* ✨ Animated Gradient Border Bottom */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00ffaa] to-transparent"
-          animate={{
-            x: ["-100%", "100%"],
-            opacity: [0.3, 1, 0.3]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
       </motion.nav>
 
       {/* 🌫️ Backdrop Overlay */}
@@ -199,7 +148,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* 📱 Premium Mobile Sidebar */}
+      {/* 📱 Mobile Sidebar */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -209,26 +158,16 @@ export default function Navbar() {
             transition={{ type: "spring", damping: 25, stiffness: 250 }}
             className="fixed top-0 right-0 w-[85%] max-w-[350px] h-screen bg-gradient-to-b from-[#0a0a0a] via-[#04745e]/20 to-black z-50 shadow-2xl border-l border-[#00ffaa]/30"
           >
-            {/* Animated Background Orbs */}
+            {/* Subtle Background Orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <motion.div
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.15, 0.25, 0.15],
-                  x: [0, 30, 0],
-                  y: [0, -30, 0]
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ opacity: [0.1, 0.2, 0.1] }}
+                transition={{ duration: 4, repeat: Infinity }}
                 className="absolute top-10 right-10 w-64 h-64 bg-[#00ffaa]/20 rounded-full blur-[80px]"
               />
               <motion.div
-                animate={{
-                  scale: [1.3, 1, 1.3],
-                  opacity: [0.2, 0.3, 0.2],
-                  x: [0, -20, 0],
-                  y: [0, 40, 0]
-                }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ opacity: [0.15, 0.25, 0.15] }}
+                transition={{ duration: 5, repeat: Infinity }}
                 className="absolute bottom-20 left-10 w-56 h-56 bg-[#04745e]/30 rounded-full blur-[80px]"
               />
             </div>
@@ -245,7 +184,7 @@ export default function Navbar() {
                 Menu
               </motion.h2>
               <motion.button
-                whileHover={{ rotate: 90, scale: 1.15 }}
+                whileHover={{ rotate: 90, scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setOpen(false)}
                 className="text-[#00ffaa] hover:text-white transition-colors p-2 hover:bg-[#00ffaa]/10 rounded-lg"
@@ -254,43 +193,31 @@ export default function Navbar() {
               </motion.button>
             </div>
 
-            {/* Navigation Links with Stagger Animation */}
+            {/* Navigation Links */}
             <ul className="relative z-10 flex flex-col px-5 py-6 space-y-2">
               {NavItems.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <motion.li
                     key={item.name}
-                    initial={{ opacity: 0, x: 50 }}
+                    initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 + 0.2, type: "spring", stiffness: 100 }}
-                    whileHover={{ x: 8, scale: 1.03 }}
+                    transition={{ delay: index * 0.08 + 0.2, duration: 0.4 }}
+                    whileHover={{ x: 6 }}
                     onClick={() => setOpen(false)}
                     className="group relative"
                   >
                     <Link href={item.url}>
-                      <motion.div
-                        className="flex items-center gap-4 p-4 text-[18px] text-gray-300 hover:text-[#00ffaa] cursor-pointer transition-all rounded-xl hover:bg-[#00ffaa]/5 border border-transparent hover:border-[#00ffaa]/30 backdrop-blur-sm"
-                      >
+                      <div className="flex items-center gap-4 p-4 text-[18px] text-gray-300 hover:text-[#00ffaa] cursor-pointer transition-all rounded-xl hover:bg-[#00ffaa]/5 border border-transparent hover:border-[#00ffaa]/30 backdrop-blur-sm">
                         <Icon className="w-5 h-5" />
                         <span className="font-semibold">{item.name}</span>
                         
-                        {/* Arrow Animation */}
-                        <motion.span
-                          className="ml-auto opacity-0 group-hover:opacity-100 text-[#00ffaa]"
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 1.2, repeat: Infinity }}
-                        >
+                        {/* Arrow */}
+                        <span className="ml-auto opacity-0 group-hover:opacity-100 text-[#00ffaa] transition-opacity">
                           →
-                        </motion.span>
-                      </motion.div>
+                        </span>
+                      </div>
                     </Link>
-
-                    {/* Hover Glow Effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-[#00ffaa]/0 group-hover:bg-[#00ffaa]/5 rounded-xl blur-sm transition-all pointer-events-none"
-                      whileHover={{ scale: 1.05 }}
-                    />
                   </motion.li>
                 );
               })}
@@ -298,26 +225,20 @@ export default function Navbar() {
 
             {/* Bottom CTA Section */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.6 }}
               className="relative z-10 absolute bottom-8 left-5 right-5"
             >
               {/* Hire Me Button */}
               <motion.button
                 whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 0 40px rgba(0, 255, 170, 0.5)"
+                  scale: 1.03,
+                  boxShadow: "0 0 30px rgba(0, 255, 170, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full px-6 py-4 bg-gradient-to-r from-[#00ffaa] to-[#04745e] text-black font-bold rounded-full shadow-2xl text-lg mb-5 relative overflow-hidden group"
+                className="w-full px-6 py-4 bg-gradient-to-r from-[#00ffaa] to-[#04745e] text-black font-bold rounded-full shadow-2xl text-lg mb-5 relative overflow-hidden"
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#04745e] to-[#00ffaa]"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Rocket className="w-5 h-5" />
                   Let's Work Together
@@ -334,13 +255,13 @@ export default function Navbar() {
                 ].map((social, i) => (
                   <motion.a
                     key={social.name}
-                    initial={{ opacity: 0, scale: 0 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1 + i * 0.1 }}
+                    transition={{ delay: 0.7 + i * 0.08 }}
                     whileHover={{ 
-                      y: -5, 
-                      scale: 1.15,
-                      boxShadow: "0 0 20px rgba(0, 255, 170, 0.4)"
+                      y: -3, 
+                      scale: 1.1,
+                      boxShadow: "0 0 15px rgba(0, 255, 170, 0.3)"
                     }}
                     whileTap={{ scale: 0.9 }}
                     href="#"

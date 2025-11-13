@@ -67,7 +67,6 @@ export default function ContactPage() {
       icon: Github, 
       url: "https://github.com/faizhussainpnq", 
       color: "from-[#333333] to-[#24292e]",
-      hoverColor: "hover:shadow-[0_0_30px_rgba(51,51,51,0.6)]",
       borderColor: "border-[#333333]"
     },
     { 
@@ -75,7 +74,6 @@ export default function ContactPage() {
       icon: Linkedin, 
       url: "https://www.linkedin.com/in/faiz-hussain-8747a4285/", 
       color: "from-[#0077b5] to-[#005582]",
-      hoverColor: "hover:shadow-[0_0_30px_rgba(0,119,181,0.6)]",
       borderColor: "border-[#0077b5]"
     },
     { 
@@ -83,7 +81,6 @@ export default function ContactPage() {
       icon: Twitter, 
       url: "https://x.com/faizhussainpnq", 
       color: "from-[#1DA1F2] to-[#0d8bd9]",
-      hoverColor: "hover:shadow-[0_0_30px_rgba(29,161,242,0.6)]",
       borderColor: "border-[#1DA1F2]"
     },
     { 
@@ -91,7 +88,6 @@ export default function ContactPage() {
       icon: Instagram, 
       url: "https://www.instagram.com/faizhussainpn?igsh=ZDFtNTY1ajRsaG55", 
       color: "from-[#E4405F] via-[#C13584] to-[#833AB4]",
-      hoverColor: "hover:shadow-[0_0_30px_rgba(228,64,95,0.6)]",
       borderColor: "border-[#E4405F]"
     },
     { 
@@ -99,7 +95,6 @@ export default function ContactPage() {
       icon: Facebook, 
       url: "https://www.facebook.com/share/1DL8Dz7frS/", 
       color: "from-[#1877F2] to-[#0d5dbf]",
-      hoverColor: "hover:shadow-[0_0_30px_rgba(24,119,242,0.6)]",
       borderColor: "border-[#1877F2]"
     },
     { 
@@ -107,7 +102,6 @@ export default function ContactPage() {
       icon: Youtube, 
       url: "https://www.youtube.com/@faizhussain1144", 
       color: "from-[#FF0000] to-[#cc0000]",
-      hoverColor: "hover:shadow-[0_0_30px_rgba(255,0,0,0.6)]",
       borderColor: "border-[#FF0000]"
     },
   ];
@@ -149,12 +143,11 @@ export default function ContactPage() {
       href="https://wa.me/916264332787"
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ scale: 0, rotate: -180 }}
-      animate={{ scale: 1, rotate: 0 }}
-      transition={{ delay: 1, type: "spring", stiffness: 200 }}
-      whileHover={{ scale: 1.15, rotate: 10 }}
-      whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-[#25D366] to-[#128C7E] rounded-full flex items-center justify-center shadow-2xl hover:shadow-[0_0_40px_rgba(37,211,102,0.6)] transition-all group"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.5 }}
+      whileHover={{ scale: 1.1 }}
+      className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-[#25D366] to-[#128C7E] rounded-full flex items-center justify-center shadow-2xl transition-all"
     >
       <svg
         viewBox="0 0 24 24"
@@ -163,12 +156,6 @@ export default function ContactPage() {
       >
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </svg>
-      {/* Pulse Animation */}
-      <motion.div
-        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute inset-0 bg-[#25D366] rounded-full"
-      />
     </motion.a>
   );
 
@@ -186,27 +173,16 @@ export default function ContactPage() {
       >
         {/* Animated Background */}
         <div className="absolute inset-0">
-          <motion.div
-            animate={{
-              background: [
-                "radial-gradient(circle at 30% 40%, rgba(0, 255, 170, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 70% 60%, rgba(0, 255, 170, 0.15) 0%, transparent 50%)",
-                "radial-gradient(circle at 30% 40%, rgba(0, 255, 170, 0.15) 0%, transparent 50%)",
-              ],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#04745e]/5 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-[#04745e]/10 to-black" />
         </div>
 
-        {/* Floating Particles */}
+        {/* Floating Particles - Reduced */}
         {mounted && (
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1 h-1 bg-[#00ffaa]/40 rounded-full"
+                className="absolute w-1 h-1 bg-[#00ffaa]/30 rounded-full"
                 initial={{
                   x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
                   y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 600),
@@ -216,9 +192,9 @@ export default function ContactPage() {
                   opacity: [0, 1, 0],
                 }}
                 transition={{
-                  duration: Math.random() * 4 + 3,
+                  duration: 6,
                   repeat: Infinity,
-                  delay: Math.random() * 2,
+                  delay: Math.random() * 3,
                   ease: "linear",
                 }}
               />
@@ -231,18 +207,7 @@ export default function ContactPage() {
             variants={itemVariants}
             className="inline-block mb-6"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="relative"
-            >
-              <Sparkles className="w-16 h-16 text-[#00ffaa] mx-auto" />
-              <motion.div
-                className="absolute inset-0 bg-[#00ffaa] blur-2xl opacity-40"
-                animate={{ scale: [1, 1.5, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </motion.div>
+            <Sparkles className="w-16 h-16 text-[#00ffaa] mx-auto" />
           </motion.div>
 
           <motion.h1
@@ -301,31 +266,11 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   variants={itemVariants}
-                  whileHover={{ y: -10, scale: 1.08 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative group flex flex-col items-center justify-center p-6 bg-gradient-to-br ${social.color} rounded-2xl shadow-lg transition-all duration-300 ${social.hoverColor} border ${social.borderColor} border-opacity-30`}
+                  whileHover={{ y: -5 }}
+                  className={`relative group flex flex-col items-center justify-center p-6 bg-gradient-to-br ${social.color} rounded-2xl shadow-lg transition-all duration-300 border ${social.borderColor} border-opacity-30`}
                 >
-                  {/* Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl blur-xl"
-                    style={{ background: `linear-gradient(135deg, ${social.color})` }}
-                  />
-                  
                   <Icon className="w-10 h-10 text-white mb-3 relative z-10" />
                   <span className="text-white font-semibold text-sm relative z-10">{social.name}</span>
-                  
-                  {/* Animated Border */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                  >
-                    <motion.div
-                      className={`absolute inset-0 rounded-2xl border-2 ${social.borderColor}`}
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  </motion.div>
                 </motion.a>
               );
             })}
@@ -358,16 +303,14 @@ export default function ContactPage() {
                     key={i}
                     href={info.link}
                     variants={itemVariants}
-                    whileHover={{ x: 10, scale: 1.02 }}
+                    whileHover={{ x: 5 }}
                     className="flex items-center gap-4 p-6 bg-gradient-to-br from-[#04745e]/10 to-transparent border border-[#00ffaa]/20 rounded-2xl backdrop-blur-sm hover:border-[#00ffaa]/40 transition-all group"
                   >
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
+                    <div
                       className={`w-14 h-14 bg-gradient-to-br ${info.color} rounded-xl flex items-center justify-center`}
                     >
                       <Icon className="w-7 h-7 text-black" />
-                    </motion.div>
+                    </div>
                     <div>
                       <h3 className="text-gray-400 text-sm font-semibold mb-1">{info.title}</h3>
                       <p className="text-white text-lg font-semibold group-hover:text-[#00ffaa] transition-colors">
@@ -480,7 +423,7 @@ export default function ContactPage() {
         </div>
       </motion.section>
 
-      {/* 🗺️ Map Section (Optional Placeholder) */}
+      {/* 🗺️ Map Section */}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -498,18 +441,6 @@ export default function ContactPage() {
               <h3 className="text-2xl font-bold text-white mb-2">Based in Pune</h3>
               <p className="text-gray-400">Maharashtra, India</p>
             </div>
-            
-            {/* Animated Rings */}
-            <motion.div
-              animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute inset-0 border-2 border-[#00ffaa] rounded-full"
-            />
-            <motion.div
-              animate={{ scale: [1, 2, 1], opacity: [0.2, 0, 0.2] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-              className="absolute inset-0 border-2 border-[#04745e] rounded-full"
-            />
           </motion.div>
         </div>
       </motion.section>

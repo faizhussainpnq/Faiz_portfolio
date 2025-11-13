@@ -48,68 +48,28 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [text, isDeleting]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.6, 0.05, 0.01, 0.9],
-      },
-    },
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
 
   return (
     <div className="w-full overflow-hidden bg-black">
-      {/* 🔹 Hero Section with Enhanced Animations */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-        className="relative w-full min-h-screen overflow-hidden"
-      >
-        {/* Animated Background Gradient */}
-        <motion.div
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 50%, rgba(4, 116, 94, 0.3) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 50%, rgba(4, 116, 94, 0.3) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, rgba(4, 116, 94, 0.3) 0%, transparent 50%)",
-            ],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0"
-        />
-        
-        {/* Static Overlay */}
+      {/* 🔹 Hero Section */}
+      <div className="relative w-full min-h-screen overflow-hidden">
+        {/* Static Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#04745e]/20 via-[#000f0c] to-[#000f0c]"></div>
 
-        {/* Floating Particles */}
+        {/* Reduced Floating Particles - only 6 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {mounted && [...Array(10)].map((_, i) => (
+          {mounted && [...Array(6)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-yellow-400/30 rounded-full"
@@ -134,19 +94,21 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 w-full min-h-screen flex flex-col justify-between px-6 sm:px-10 md:px-16 lg:px-24 py-10">
           {/* Header with Typing Animation */}
-          <motion.div variants={itemVariants} className="mt-10">
-            <motion.h1
-              className="text-[32px] sm:text-[56px] md:text-[72px] lg:text-[96px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-white to-yellow-500 font-serif text-center sm:text-left"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mt-10"
+          >
+            <h1 className="text-[32px] sm:text-[56px] md:text-[72px] lg:text-[96px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-white to-yellow-500 font-serif text-center sm:text-left">
               {text}
               <span className="border-r-4 border-yellow-400 animate-blink ml-1"></span>
-            </motion.h1>
+            </h1>
             
             <motion.p
-              variants={itemVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
               className="mt-6 text-gray-300 text-lg sm:text-xl md:text-2xl max-w-2xl text-center sm:text-left"
             >
               Full Stack Developer | UI/UX Enthusiast | Problem Solver
@@ -154,11 +116,13 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <motion.div
-              variants={itemVariants}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
               className="flex flex-wrap gap-4 mt-8 justify-center sm:justify-start"
             >
               <motion.a
-               href="/projects"
+                href="/projects"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(251, 191, 36, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-full shadow-lg hover:shadow-yellow-500/50 transition-all"
@@ -176,20 +140,17 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Floating Image Component */}
+          {/* Floating Image Component - light float animation */}
           <motion.div
-            variants={floatingVariants}
-            animate="animate"
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2"
           >
             <Img />
           </motion.div>
 
-          {/* Animated Marquee */}
-          <motion.div
-            variants={itemVariants}
-            className="relative overflow-hidden py-8"
-          >
+          {/* Marquee */}
+          <div className="relative overflow-hidden py-8">
             <div className="flex whitespace-nowrap animate-marquee text-[24px] sm:text-[32px] md:text-[48px] lg:text-[72px] font-serif text-gray-400/20 font-bold">
               <span className="mx-8">
                 NEXT.JS • TAILWIND CSS • FRAMER MOTION • TYPESCRIPT • REACT
@@ -198,7 +159,7 @@ export default function Home() {
                 NEXT.JS • TAILWIND CSS • FRAMER MOTION • TYPESCRIPT • REACT
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         <style jsx>{`
@@ -223,17 +184,17 @@ export default function Home() {
             animation: marquee 20s linear infinite;
           }
         `}</style>
-      </motion.div>
+      </div>
 
-      {/* 🔹 Interactive 3D Card Gallery Section */}
+      {/* 🔹 Card Gallery Section */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
         className="relative w-full min-h-[600px] sm:min-h-[700px] overflow-hidden bg-gradient-to-b from-black via-[#000f0c] to-black py-20"
       >
-        {/* Animated Grid Background */}
+        {/* Static Grid Background */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `linear-gradient(rgba(251, 191, 36, 0.2) 1px, transparent 1px),
@@ -242,20 +203,14 @@ export default function Home() {
           }}></div>
         </div>
 
-        {/* Glowing Orbs */}
+        {/* Subtle Glowing Orbs */}
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
+          animate={{ opacity: [0.2, 0.3, 0.2] }}
           transition={{ duration: 4, repeat: Infinity }}
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-400/10 rounded-full blur-[120px]"
         />
         <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
-          }}
+          animate={{ opacity: [0.3, 0.4, 0.3] }}
           transition={{ duration: 5, repeat: Infinity }}
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#04745e]/20 rounded-full blur-[120px]"
         />
@@ -263,15 +218,16 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 px-6 sm:px-10 md:px-16 lg:px-24">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-[32px] sm:text-[48px] md:text-[64px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-white to-yellow-500 text-center mb-16 font-serif"
           >
             Crafting Digital Experiences
           </motion.h2>
 
-          {/* 3D Floating Cards */}
+          {/* Cards with subtle animations */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               { title: "Design", icon: "✨", desc: "Beautiful & Intuitive", color: "from-yellow-400/10 to-yellow-600/5" },
@@ -280,50 +236,18 @@ export default function Home() {
             ].map((card, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 50, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 0.8 }}
-                whileHover={{ 
-                  y: -20, 
-                  rotateY: 5,
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 className="relative group"
-                style={{ perspective: '1000px' }}
               >
                 <div className={`relative p-8 bg-gradient-to-br ${card.color} backdrop-blur-xl border border-yellow-400/30 rounded-3xl overflow-hidden hover:border-yellow-400/50 transition-all duration-300`}>
-                  {/* Animated Border Glow */}
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent)',
-                    }}
-                    animate={{
-                      x: ['-100%', '100%'],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'linear',
-                    }}
-                  />
-                  
-                  {/* Icon with Animation */}
-                  <motion.div
-                    className="text-6xl mb-4"
-                    animate={{
-                      rotate: [0, 10, -10, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                  >
+                  {/* Icon */}
+                  <div className="text-6xl mb-4">
                     {card.icon}
-                  </motion.div>
+                  </div>
                   
                   <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-white mb-2">{card.title}</h3>
                   <p className="text-gray-400 text-lg">{card.desc}</p>
@@ -335,12 +259,12 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Animated Code Snippets Showcase */}
+          {/* Code Snippets Showcase */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-20 max-w-4xl mx-auto"
           >
             <div className="relative p-8 bg-gradient-to-br from-[#0a0a0a]/90 to-[#000f0c]/90 backdrop-blur-xl border border-yellow-400/20 rounded-2xl overflow-hidden">
@@ -352,27 +276,17 @@ export default function Home() {
                 <span className="ml-4 text-gray-400 text-sm font-mono">~/portfolio/magic.js</span>
               </div>
               
-              {/* Animated Code Lines */}
+              {/* Code Lines */}
               <div className="font-mono text-sm sm:text-base space-y-1">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.8 }}
-                >
+                <div>
                   <span className="text-purple-400">const</span>
                   <span className="text-blue-400"> passion</span>
                   <span className="text-white"> = </span>
                   <span className="text-green-400">"Building Amazing Things"</span>
                   <span className="text-white">;</span>
-                </motion.div>
+                </div>
                 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.9 }}
-                >
+                <div>
                   <span className="text-purple-400">const</span>
                   <span className="text-blue-400"> skills</span>
                   <span className="text-white"> = [</span>
@@ -382,17 +296,12 @@ export default function Home() {
                   <span className="text-white">, </span>
                   <span className="text-green-400">"JavaScript"</span>
                   <span className="text-white">];</span>
-                </motion.div>
+                </div>
                 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 1.0 }}
-                >
+                <div>
                   <span className="text-blue-400">createMagic</span>
                   <span className="text-white">(passion, skills);</span>
-                </motion.div>
+                </div>
               </div>
 
               {/* Glowing Cursor */}
@@ -407,13 +316,7 @@ export default function Home() {
       </motion.div>
 
       {/* 🔹 Stats Section */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={containerVariants}
-        className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-b from-black to-[#000f0c]"
-      >
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-b from-black to-[#000f0c]">
         {[
           { number: "10+", label: "Projects Built" },
           { number: "15+", label: "Technologies" },
@@ -422,41 +325,38 @@ export default function Home() {
         ].map((stat, i) => (
           <motion.div
             key={i}
-            variants={itemVariants}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
             whileHover={{ scale: 1.05, y: -10 }}
             className="text-center p-6 bg-gradient-to-br from-[#04745e]/10 to-transparent border border-yellow-400/20 rounded-2xl"
           >
-            <motion.h3
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500"
-            >
+            <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
               {stat.number}
-            </motion.h3>
+            </h3>
             <p className="mt-2 text-gray-400 text-sm sm:text-base">{stat.label}</p>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
 
       {/* 🔹 About Section */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={containerVariants}
-        className="px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-b from-[#000f0c] to-black"
-      >
+      <section className="px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-b from-[#000f0c] to-black">
         <motion.h2
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 text-center mb-12 font-serif"
         >
           About Me
         </motion.h2>
         
         <motion.div
-          variants={itemVariants}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           className="max-w-4xl mx-auto text-center"
         >
           <p className="text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed mb-6">
@@ -470,10 +370,7 @@ export default function Home() {
         </motion.div>
 
         {/* Tech Stack */}
-        <motion.div
-          variants={containerVariants}
-          className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
-        >
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {[
             "Next.js",
             "React",
@@ -490,8 +387,11 @@ export default function Home() {
           ].map((tech, i) => (
             <motion.div
               key={i}
-              variants={itemVariants}
-              whileHover={{ scale: 1.1, rotate: 5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+              whileHover={{ scale: 1.1, rotate: 3 }}
               className="p-4 bg-gradient-to-br from-[#04745e]/20 to-transparent border border-yellow-400/30 rounded-xl text-center backdrop-blur-sm"
             >
               <span className="text-yellow-400 font-semibold text-sm sm:text-base">
@@ -499,33 +399,36 @@ export default function Home() {
               </span>
             </motion.div>
           ))}
-        </motion.div>
-      </motion.section>
+        </div>
+      </section>
 
       {/* 🔹 CTA Section */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={containerVariants}
-        className="px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-t from-[#04745e]/10 to-black text-center"
-      >
+      <section className="px-6 sm:px-10 md:px-16 lg:px-24 py-20 bg-gradient-to-t from-[#04745e]/10 to-black text-center">
         <motion.h2
-          variants={itemVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
         >
           Let's Build Something Amazing Together
         </motion.h2>
         
         <motion.p
-          variants={itemVariants}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           className="text-gray-400 text-lg sm:text-xl mb-8 max-w-2xl mx-auto"
         >
           Have a project in mind? Let's discuss how I can help bring your ideas to life.
         </motion.p>
 
         <motion.div
-          variants={itemVariants}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
           className="flex flex-wrap gap-4 justify-center"
         >
           <motion.a
@@ -537,7 +440,7 @@ export default function Home() {
             View My Work
           </motion.a>
           <motion.a
-           href="/contact"
+            href="/contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 font-bold rounded-full hover:bg-yellow-400/10 transition-all text-lg"
@@ -545,7 +448,7 @@ export default function Home() {
             Get in Touch
           </motion.a>
         </motion.div>
-      </motion.section>
+      </section>
     </div>
   );
 }
